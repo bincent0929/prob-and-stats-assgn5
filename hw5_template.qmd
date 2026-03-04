@@ -2,7 +2,9 @@
 title: "HW5"
 author: "Vincent Roberson"
 date: today
-format: pdf
+format:
+  pdf:
+    fig-pos: "H"
 execute:
   echo: true
 ---
@@ -27,13 +29,29 @@ A. The Poisson distribution is often used to describe how many times an event ta
  $f(x | \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}$
 
 
+::: {#fig-poisson}
+![](lambda-derivation-poisson.svg)
+
+MLE derivation for $\lambda$ from the Poisson distribution formula
+:::
 
 
 B. Bernoulli distribution is a special binomial distribution when the parameter n = 1. The PDF for Bernoulli distribution is $f(x | p) = p^x(1-p)^{1-x}$. Please derive the MLE for $p$ given n observations $x_1, \ldots, x_n$ independently and identically drawn from the Bernoulli distribution with parameter $p$.
 
 
+::: {#fig-bernoulli}
+![](p-derivation-bernoulli.svg)
+
+MLE derivation for $p$ from the Bernoulli distribution formula
+:::
+
 
 ## Part II: Computational optimization for getting MLE using `optim` function in R. (50 pts)
+
+``` {r}
+# keeps the output consistent from the "random" values
+set.seed(55)
+```
 
 A. Assume $x_1, \ldots, x_N$ are independently drawn from Poisson($\lambda$).  Using the simplified log-likelihood for the Poisson distribution from Part I A.
 
@@ -70,7 +88,7 @@ B. Assume $x_1, \ldots, x_N$ are independently drawn from Bernoulli($p$).  Using
 a) Generate 1000 random numbers from Bernoulli distribution with parameter $p = 0.15$. 
 
 ``` {r}
-bernouli_random_numbers <- rbinom(1000, size = 1, prob = 0.15)
+bernoulli_random_numbers <- rbinom(1000, size = 1, prob = 0.15)
 ```
 
 b) Write the simplified log-likelihood in R code (Please show your code).
@@ -89,7 +107,7 @@ bernoulli_log_likelihood_estimator <- optim(
   fn = bernoulli_log_likelihood,
   method = "L-BFGS-B", lower = 0.01, upper = .99,
   control = list(fnscale = -1),
-  x = bernouli_random_numbers
+  x = bernoulli_random_numbers
 )$par
 bernoulli_log_likelihood_estimator
 ```

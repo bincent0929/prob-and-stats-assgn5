@@ -1,0 +1,63 @@
+---
+title: "HW5"
+author: "Vincent Roberson"
+date: today
+format: pdf
+execute:
+  echo: true
+---
+
+# HW 05- Introduction (100 pts).
+## Assignment Overview
+The purpose of this assignment is to review maximum likelihood estimators (MLE) and practice solving MLE analytically and computationally.  
+
+## Instructions
+- You will answer the questions directly in the Rmarkdown template file provided. 
+- Please change your name in the template file.
+- How to insert R code chunks: You can quickly insert chunks into your R Markdown file with the keyboard shortcut Cmd + Option + I (Windows Ctrl + Alt + I).
+- You can knit a PDF and upload the final pdf file to Canvas.
+
+
+## Part I Derive the MLE for the parameters in the following distributions (Total 50 pts, 25 pts each)
+(note: You may take a picture of what you have done on a paper and insert your pictures into Rmarkdown or type the solution in LaTeX format under each question. )
+
+A. The Poisson distribution is often used to describe how many times an event takes place within a certain time interval, such as number of daily customers at a store. Assume $x_1, \ldots, x_n$ independently drawn from Poisson distribution ($\lambda)$, where $\lambda$ is the rate of occurrences. Derive the maximum likelihood estimator of $\lambda$ . The
+  probability mass function (PMF) for the Poisson distribution is:
+
+ $f(x | \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}$
+
+
+B. Bernoulli distribution is a special binomial distribution when the parameter n = 1. The PDF for Bernoulli distribution is $f(x | p) = p^x(1-p)^{1-x}$. Please derive the MLE for $p$ given n observations $x_1, \ldots, x_n$ independently and identically drawn from the Bernoulli distribution with parameter $p$.
+
+## Part II: Computational optimization for getting MLE using `optim` function in R. (50 pts)
+
+A. Assume $x_1, \ldots, x_N$ are independently drawn from Poisson($\lambda$).  Using the simplified log-likelihood for the Poisson distribution from Part I A.
+
+a) Generate 1000 random numbers from Poisson distribution with parameter $\lambda = 10$. 
+
+b) Write the simplified log-likelihood in R code (Please show your code).
+	
+c) Write `R` code using the function `optim` to find the maximum likelihood estimator for $\lambda$. 
+
+
+
+B. Assume $x_1, \ldots, x_N$ are independently drawn from Bernoulli($p$).  Using the simplified log-likelihood for the Bernoulli distribution from Part I B.
+
+a) Generate 1000 random numbers from Bernoulli distribution with parameter $p = 0.15$. 
+
+b) Write the simplified log-likelihood in R code (Please show your code).
+	
+c) Write `R` code using the function `optim` to find the maximum likelihood estimator for $p$. 
+
+
+
+## Part III Bonus (Optional, the purpose is to encourage your efforts in learning and character growth. Bonus points could be given but not limited to the following efforts)
+a. Attend community coding or office hours: please list the date, time and the faculty/student assistant you met.
+b. Write a statement of how you overcome the difficulties in life in order to learn.
+c. Write your questions regarding lectures. 
+
+
+
+
+
+

@@ -35,10 +35,23 @@ A. Assume $x_1, \ldots, x_N$ are independently drawn from Poisson($\lambda$).  U
 
 a) Generate 1000 random numbers from Poisson distribution with parameter $\lambda = 10$. 
 
+``` {r}
+rpois(n = 1000, lambda = 10) -> random_numbers
+```
+
 b) Write the simplified log-likelihood in R code (Please show your code).
+
+``` {r}
+poisson_log_likelihood <- function(lambda, x) {
+  sum(x * log(lambda) - lambda - lfactorial(x))
+}
+```
 	
 c) Write `R` code using the function `optim` to find the maximum likelihood estimator for $\lambda$. 
 
+``` {r}
+
+```
 
 
 B. Assume $x_1, \ldots, x_N$ are independently drawn from Bernoulli($p$).  Using the simplified log-likelihood for the Bernoulli distribution from Part I B.

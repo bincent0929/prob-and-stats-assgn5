@@ -24,6 +24,8 @@
 		}
 	}
 
+	// add `sudo apt-get install librsvg2-bin` as a command for svgs from excalidraw
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 

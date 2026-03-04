@@ -27,7 +27,11 @@ A. The Poisson distribution is often used to describe how many times an event ta
  $f(x | \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}$
 
 
+
+
 B. Bernoulli distribution is a special binomial distribution when the parameter n = 1. The PDF for Bernoulli distribution is $f(x | p) = p^x(1-p)^{1-x}$. Please derive the MLE for $p$ given n observations $x_1, \ldots, x_n$ independently and identically drawn from the Bernoulli distribution with parameter $p$.
+
+
 
 ## Part II: Computational optimization for getting MLE using `optim` function in R. (50 pts)
 
@@ -50,7 +54,14 @@ poisson_log_likelihood <- function(lambda, x) {
 c) Write `R` code using the function `optim` to find the maximum likelihood estimator for $\lambda$. 
 
 ``` {r}
-
+poisson_max_likelihood_estimator <- optim(
+  par = 1,
+  fn = poisson_log_likelihood,
+  method = "L-BFGS-B", lower = 0.01,
+  control = list(fnscale = -1),
+  x = random_numbers
+)$par
+poisson_max_likelihood_estimator
 ```
 
 
@@ -58,15 +69,39 @@ B. Assume $x_1, \ldots, x_N$ are independently drawn from Bernoulli($p$).  Using
 
 a) Generate 1000 random numbers from Bernoulli distribution with parameter $p = 0.15$. 
 
+``` {r}
+bernouli_random_numbers <- rbinom(1000, size = 1, prob = 0.15)
+```
+
 b) Write the simplified log-likelihood in R code (Please show your code).
+
+``` {r}
+bernoulli_log_likelihood <- function(p, x) {
+  sum(x*log(p) + (1 - x) * log(1 - p))
+}
+```
 	
 c) Write `R` code using the function `optim` to find the maximum likelihood estimator for $p$. 
 
+``` {r}
+bernoulli_log_likelihood_estimator <- optim(
+  par = 0.5,
+  fn = bernoulli_log_likelihood,
+  method = "L-BFGS-B", lower = 0.01, upper = .99,
+  control = list(fnscale = -1),
+  x = bernouli_random_numbers
+)$par
+bernoulli_log_likelihood_estimator
+```
 
 
 ## Part III Bonus (Optional, the purpose is to encourage your efforts in learning and character growth. Bonus points could be given but not limited to the following efforts)
 a. Attend community coding or office hours: please list the date, time and the faculty/student assistant you met.
+
 b. Write a statement of how you overcome the difficulties in life in order to learn.
+
+In order to overcome the difficulties in life in order to learn, I will make sure that I complete all my work for the day and portion of the work due farther along the long at a consistent rate in order to avoid binge sessions caused by external life commitments where learning ability is lessoned.
+
 c. Write your questions regarding lectures. 
 
 
